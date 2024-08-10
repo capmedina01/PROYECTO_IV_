@@ -14,7 +14,7 @@ public class SaludoController {
 
     @GetMapping("/adios")
     public String despedir(){
-        return "Hola mundo ADSO";
+        return "hasta  pronto ADSO";
     }
 
 
