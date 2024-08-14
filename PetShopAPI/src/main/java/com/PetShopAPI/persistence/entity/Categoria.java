@@ -4,23 +4,15 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "Productos")
+@Table(name = "categorias")
 @Data
-public class Producto {
-
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer productoId;
+    private Integer categoriaId;
 
     private String nombre;
 
     private String descripcion;
-
-    private double precio;
-
-    private Integer stock;
-
-    private Integer categoriaId;
-
 }
