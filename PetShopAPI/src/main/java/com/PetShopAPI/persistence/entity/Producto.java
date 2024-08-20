@@ -23,4 +23,8 @@ public class Producto {
 
     private Integer categoriaId;
 
+    @ManyToOne
+    @JoinColumn(name = "categoriaId", insertable = false, updatable = false)
+    private Categoria categoria;
+
 }
