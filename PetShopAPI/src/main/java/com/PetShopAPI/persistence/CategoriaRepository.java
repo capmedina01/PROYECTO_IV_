@@ -43,4 +43,18 @@ public class CategoriaRepository {
         return null;
     }
 
+    public void deleteCategoria(Integer categoriaId){
+
+        try {
+            Optional<Categoria> catExist = categoriaCrudRepository.findById(categoriaId);
+
+            if(catExist.isPresent()){
+                categoriaCrudRepository.deleteById(categoriaId)
+            }
+        }catch (Exception e){
+            throw new RuntimeException("Error al eliminar la categoria"+e.getMessage());
+        }
+
+    }
+
 }
