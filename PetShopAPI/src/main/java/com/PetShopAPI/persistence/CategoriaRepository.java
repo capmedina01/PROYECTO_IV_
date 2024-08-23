@@ -2,10 +2,11 @@ package com.PetShopAPI.persistence;
 
 import com.PetShopAPI.persistence.crud.CategoriaCrudRepository;
 import com.PetShopAPI.persistence.entity.Categoria;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public class CategoriaRepository {
 
     private CategoriaCrudRepository categoriaCrudRepository;
