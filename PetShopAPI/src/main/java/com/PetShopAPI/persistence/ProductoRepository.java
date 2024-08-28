@@ -19,7 +19,7 @@ public class ProductoRepository {
         }
     }
 
-    public List<Producto> findAll() {
+    public List<Producto> getAllProducts() {
 
         try {
             return (List<Producto>) productoCrudRepository.findAll();
