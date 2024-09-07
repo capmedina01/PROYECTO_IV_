@@ -45,7 +45,15 @@ public class MascotaRepository {
         }catch(Exception e){
             throw new RuntimeException("Error al actualizar la mascota"+e.getMessage());
         }
+        return null;
     }
 
+    public void deleteMascota(Mascota mascota) {
 
+        try{
+            mascotaCrudRepository.delete(mascota);
+        }catch(Exception e){
+            throw new RuntimeException("Error al eliminar la mascota"+e.getMessage());
+        }
+    }
 }

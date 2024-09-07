@@ -1,13 +1,14 @@
 package com.PetShopAPI.domain.repository;
 
-import com.PetShopAPI.domain.dto.ProductDomainDTO;
+import com.PetShopAPI.domain.Product;
+
 
 import java.util.List;
 
 public interface ProductDomainRepository {
 
-    ProductDomainDTO createProduct(ProductDomainDTO product);
-    ProductDomainDTO updateProduct(ProductDomainDTO product);
-    List<ProductDomainDTO> getAllProducts();
-    void deleteProduct(ProductDomainDTO product);
+    Product createProduct(Product product);
+    Product updateProduct(Product product);
+    List<Product> getAllProducts();
+    void deleteProduct(Product product);
 }
