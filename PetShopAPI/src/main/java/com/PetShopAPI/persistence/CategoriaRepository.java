@@ -1,15 +1,20 @@
 package com.PetShopAPI.persistence;
 
+import com.PetShopAPI.domain.Category;
+import com.PetShopAPI.domain.repository.CategoryDomainRepository;
 import com.PetShopAPI.persistence.crud.CategoriaCrudRepository;
 import com.PetShopAPI.persistence.entity.Categoria;
+import com.PetShopAPI.persistence.entity.Producto;
+import com.PetShopAPI.persistence.mapper.CategoryMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 @Repository
-public class CategoriaRepository {
+public class CategoriaRepository implements CategoryDomainRepository {
 
     private CategoriaCrudRepository categoriaCrudRepository;
+    private CategoryMapper mapper;
 
     public Categoria createCategoria(Categoria categoria){
         try {
@@ -20,9 +25,10 @@ public class CategoriaRepository {
         }
     }
 
-    public List<Categoria> getCategorias() {
+    public List<Category> getCategorias() {
         try {
-            return (List<Categoria>) categoriaCrudRepository.findAll();
+           List<Categoria> categorias= (List<Categoria>) categoriaCrudRepository.findAll();
+            return mapper.toCategory(categorias);
         }catch (Exception e){
             throw new RuntimeException("Error al consultar las categorias"+e.getMessage());
         }
@@ -58,4 +64,23 @@ public class CategoriaRepository {
 
     }
 
+    @Override
+    public Category CreateCategory(Category category) {
+        return null;
+    }
+
+    @Override
+    public Category UpdateCategory(Category category) {
+        return null;
+    }
+
+    @Override
+    public Category DeleteCategory(Category category) {
+        return null;
+    }
+
+    @Override
+    public List<Category> GetAllCategories() {
+        return List.of();
+    }
 }

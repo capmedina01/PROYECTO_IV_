@@ -1,14 +1,21 @@
 package com.PetShopAPI.persistence;
 
+import com.PetShopAPI.domain.Product;
+import com.PetShopAPI.domain.repository.ProductDomainRepository;
 import com.PetShopAPI.persistence.crud.ProductoCrudRepository;
 import com.PetShopAPI.persistence.entity.Producto;
+import com.PetShopAPI.persistence.mapper.ProductMapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ProductoRepository {
+@Repository
+public class ProductoRepository implements ProductDomainRepository {
 
     private ProductoCrudRepository productoCrudRepository;
+    private ProductMapper mapper;
 
     public Producto createProducto(Producto producto) {
 
@@ -19,13 +26,28 @@ public class ProductoRepository {
         }
     }
 
-    public List<Producto> getAllProducts() {
+    @Override
+    public Product createProduct(Product product) {
+        return null;
+    }
 
+    @Override
+    public Product updateProduct(Product product) {
+        return null;
+    }
+
+    public List<Product> getAllProducts() {
         try {
-            return (List<Producto>) productoCrudRepository.findAll();
+            List<Producto> productos = (List<Producto>) productoCrudRepository.findAll();
+            return mapper.toProducts(productos);
         }catch (Exception e) {
             throw new RuntimeException("Error al consultar los productos"+e.getMessage());
         }
+    }
+
+    @Override
+    public void deleteProduct(Product product) {
+
     }
 
     public Producto updateProducto(Producto producto) {
