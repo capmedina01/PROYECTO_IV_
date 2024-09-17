@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface CategoryDomainRepository {
 
-    Category CreateCategory(Category category);
-    Category UpdateCategory(Category category);
-    Category DeleteCategory(Category category);
-    List<Category> GetAllCategories();
+    Category createCategory(Category category);
+    Category updateCategory(Category category);
+    Category deleteCategory(Category category);
+    List<Category> getAllCategories();
 }

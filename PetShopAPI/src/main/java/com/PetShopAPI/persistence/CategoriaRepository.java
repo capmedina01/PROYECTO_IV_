@@ -6,6 +6,7 @@ import com.PetShopAPI.persistence.crud.CategoriaCrudRepository;
 import com.PetShopAPI.persistence.entity.Categoria;
 import com.PetShopAPI.persistence.entity.Producto;
 import com.PetShopAPI.persistence.mapper.CategoryMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,16 +17,18 @@ public class CategoriaRepository implements CategoryDomainRepository {
     private CategoriaCrudRepository categoriaCrudRepository;
     private CategoryMapper mapper;
 
-    public Categoria createCategoria(Categoria categoria){
+    @Override
+    public Category createCategory(Category category){
         try {
-            Categoria saved = categoriaCrudRepository.save(categoria);
-            return saved;
+            Categoria categoria = mapper.toCategoria(category);
+            return mapper.toCategory(categoriaCrudRepository.save(categoria));
+
         }catch (Exception e){
             throw new RuntimeException("Error al crear la categoria"+e.getMessage());
         }
     }
 
-    public List<Category> getCategorias() {
+    public List<Category> getAllCategories() {
         try {
            List<Categoria> categorias= (List<Categoria>) categoriaCrudRepository.findAll();
             return mapper.toCategory(categorias);

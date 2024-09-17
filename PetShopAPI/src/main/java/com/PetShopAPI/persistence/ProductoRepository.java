@@ -16,26 +16,7 @@ public class ProductoRepository implements ProductDomainRepository {
 
     private ProductoCrudRepository productoCrudRepository;
     private ProductMapper mapper;
-
-    public Producto createProducto(Producto producto) {
-
-        try {
-            return productoCrudRepository.save(producto);
-        }catch (Exception e) {
-            throw new RuntimeException("Error al crear el producto"+e.getMessage());
-        }
-    }
-
     @Override
-    public Product createProduct(Product product) {
-        return null;
-    }
-
-    @Override
-    public Product updateProduct(Product product) {
-        return null;
-    }
-
     public List<Product> getAllProducts() {
         try {
             List<Producto> productos = (List<Producto>) productoCrudRepository.findAll();
@@ -47,7 +28,29 @@ public class ProductoRepository implements ProductDomainRepository {
 
     @Override
     public void deleteProduct(Product product) {
+        Producto producto = mapper.toProducto(product);
+        productoCrudRepository.delete(producto);
+    }
 
+    @Override
+    public Product createProduct(Product product) {
+        Producto producto = mapper.toProducto(product);
+       return mapper.toProduct(productoCrudRepository.save(producto));
+    }
+
+    @Override
+    public Product updateProduct(Product product) {
+        Producto producto = mapper.toProducto(product);
+        return mapper.toProduct(productoCrudRepository.save(producto));
+    }
+
+    public Producto createProducto(Producto producto) {
+
+        try {
+            return productoCrudRepository.save(producto);
+        }catch (Exception e) {
+            throw new RuntimeException("Error al crear el producto"+e.getMessage());
+        }
     }
 
     public Producto updateProducto(Producto producto) {
@@ -67,6 +70,7 @@ public class ProductoRepository implements ProductDomainRepository {
         }
         return null;
     }
+
 
     public void deleteProducto(Producto producto) {
 
