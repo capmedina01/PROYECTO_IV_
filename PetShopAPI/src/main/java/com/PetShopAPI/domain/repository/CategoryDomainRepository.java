@@ -8,6 +8,6 @@ public interface CategoryDomainRepository {
 
     Category createCategory(Category category);
     Category updateCategory(Category category);
-    Category deleteCategory(Category category);
+    void deleteCategory(Category category);
     List<Category> getAllCategories();
 }

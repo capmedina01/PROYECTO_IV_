@@ -28,62 +28,38 @@ public class CategoriaRepository implements CategoryDomainRepository {
         }
     }
 
+    @Override
     public List<Category> getAllCategories() {
         try {
            List<Categoria> categorias= (List<Categoria>) categoriaCrudRepository.findAll();
-            return mapper.toCategory(categorias);
+            return mapper.toCategories(categorias);
         }catch (Exception e){
             throw new RuntimeException("Error al consultar las categorias"+e.getMessage());
         }
     }
 
-    public Categoria UpdateCategoria(Categoria categoria){
+    @Override
+    public Category updateCategory(Category category){
         try {
-            Optional<Categoria> catExist = categoriaCrudRepository.findById(categoria.getCategoriaId());
-            if(catExist.isPresent()){
-                Categoria cat = catExist.get();
-                cat.setNombre(categoria.getNombre());
-                cat.setDescripcion(categoria.getDescripcion());
+            Categoria categoria = mapper.toCategoria(category);
+            return mapper.toCategory(categoriaCrudRepository.save(categoria));
 
-                return categoriaCrudRepository.save(cat);
-            }
         }catch (Exception e){
             throw new RuntimeException("Error al actualizar la categoria"+e.getMessage());
         }
-        return null;
+
     }
 
-    public void deleteCategoria(Integer categoriaId){
-
+    @Override
+    public void deleteCategory(Category category){
         try {
-            Optional<Categoria> catExist = categoriaCrudRepository.findById(categoriaId);
+            Categoria categoria = mapper.toCategoria(category);
+                categoriaCrudRepository.delete(categoria);
 
-            if(catExist.isPresent()){
-                categoriaCrudRepository.deleteById(categoriaId);
-            }
         }catch (Exception e){
             throw new RuntimeException("Error al eliminar la categoria"+e.getMessage());
         }
 
     }
 
-    @Override
-    public Category CreateCategory(Category category) {
-        return null;
-    }
-
-    @Override
-    public Category UpdateCategory(Category category) {
-        return null;
-    }
-
-    @Override
-    public Category DeleteCategory(Category category) {
-        return null;
-    }
-
-    @Override
-    public List<Category> GetAllCategories() {
-        return List.of();
-    }
 }
