@@ -5,6 +5,7 @@ import com.PetShopAPI.domain.repository.ProductDomainRepository;
 import com.PetShopAPI.persistence.crud.ProductoCrudRepository;
 import com.PetShopAPI.persistence.entity.Producto;
 import com.PetShopAPI.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -13,8 +14,10 @@ import java.util.Optional;
 
 @Repository
 public class ProductoRepository implements ProductDomainRepository {
-
+    @Autowired
     private ProductoCrudRepository productoCrudRepository;
+
+    @Autowired
     private ProductMapper mapper;
     @Override
     public List<Product> getAllProducts() {

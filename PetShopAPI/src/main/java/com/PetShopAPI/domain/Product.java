@@ -2,7 +2,7 @@ package com.PetShopAPI.domain;
 
 import lombok.Data;
 
-@Data
+
 public class Product {
 
     private int productId;
